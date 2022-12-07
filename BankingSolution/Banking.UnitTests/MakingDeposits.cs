@@ -1,8 +1,4 @@
-﻿
-
-
-
-
+﻿using Banking.UnitTests.TestDoubles;
 
 namespace Banking.UnitTests;
 
@@ -14,9 +10,9 @@ public class MakingDeposits
     public void MakingDepositsIncreasesBalance(decimal amountToDeposit)
     {
         // Given
-        var account = new BankAccount();
+        var account = new BankAccount(new DummyBonusCalculator());
         var openingBalance = account.GetBalance();
-      
+
         // When
         account.Deposit(amountToDeposit);
 
@@ -24,6 +20,6 @@ public class MakingDeposits
         Assert.Equal(amountToDeposit + openingBalance,
             account.GetBalance());
 
-       
+
     }
 }
